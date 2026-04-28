@@ -1,0 +1,46 @@
+<div class="container mx-auto p-6 space-y-6">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <h2 class="text-lg font-semibold mb-4">Find Client by ID</h2>
+        <div class="flex gap-2">
+            <input type="text" id="clientIdSearch" placeholder="Enter Client ID (e.g. a1b2c3d4)" class="border p-2 rounded w-full">
+            <button onclick="findClient()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Search</button>
+        </div>
+        <div id="clientResult" class="mt-4 hidden p-4 bg-gray-50 rounded">
+            <p id="clientDisplayInfo"></p>
+            <button id="editBtn" class="mt-2 text-sm text-blue-600 underline" onclick="requestEdit()">Request Edit Permission</button>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <h2 class="text-lg font-semibold mb-4">New Transaction (Immutable)</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <input type="text" id="payerName" placeholder="Payer Full Name" class="border p-2 rounded">
+            <input type="text" id="phone" placeholder="Phone Number" class="border p-2 rounded">
+            <input type="number" id="amount" placeholder="Amount" class="border p-2 rounded">
+            <select id="method" class="border p-2 rounded">
+                <option value="Mobile Money">Mobile Money</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="International">International</option>
+            </select>
+        </div>
+        <button onclick="submitTx()" class="mt-4 w-full bg-black text-white p-3 rounded font-bold">Process & Lock Transaction</button>
+    </div>
+</div>
+
+<script>
+async function findClient() {
+    const id = document.getElementById('clientIdSearch').value;
+    const res = await fetch(`/api/client/${id}`);
+    if(res.ok) {
+        const data = await res.json();
+        document.getElementById('clientResult').classList.remove('hidden');
+        document.getElementById('clientDisplayInfo').innerText = `Client: ${data.name} | Region: ${data.region}`;
+    } else {
+        alert("Client not found or ID incorrect.");
+    }
+}
+
+async function submitTx() {
+    // Logic to POST to /api/transaction and display the generated UUID
+}
+</script>
