@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+agri_erp.db
+node_modules/
+.venv/
