@@ -1,7 +1,4 @@
-flask
-flask-sqlalchemy
-flask-cors
-python-dotenv
-gunicorn
-psycopg2-binary
-
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-Bcrypt==1.0.1
+asgi-proxy-lib
