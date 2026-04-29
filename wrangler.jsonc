@@ -6,7 +6,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "jofarm_records",
+      "database_name": "agri_records",
       "database_id": "1b0250cd-0b96-41da-9d86-b25ab25085de"
     }
   ]
