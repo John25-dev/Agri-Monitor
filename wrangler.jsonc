@@ -1,8 +1,13 @@
 {
   "name": "agri-monitor",
-  "compatibility_date": "2024-01-01",
-  "pages_build_output_dir": "./dist",
-  "observability": {
-    "enabled": true
-  }
+  "main": "app.py",
+  "compatibility_date": "2024-04-01",
+  "compatibility_flags": ["python_workers"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "jofarm_records",
+      "database_id": "1b0250cd-0b96-41da-9d86-b25ab25085de"
+    }
+  ]
 }
