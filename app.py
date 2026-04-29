@@ -80,7 +80,7 @@ def request_edit(client_id):
     db.session.commit()
     return jsonify({"message": "Edit request submitted to Admin."})
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(host='127.0.0.1', port=8000)
+# Worker Entrypoint Bridge
+async def on_fetch(request, env):
+    import workers
+    return await workers.asgi.fetch(app, request, env)
