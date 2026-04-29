@@ -1,17 +1,13 @@
 {
-  "observability": {
-    "enabled": false,
-    "head_sampling_rate": 1,
-    "logs": {
-      "enabled": true,
-      "head_sampling_rate": 1,
-      "persist": true,
-      "invocation_logs": true
-    },
-    "traces": {
-      "enabled": false,
-      "persist": true,
-      "head_sampling_rate": 1
+  "name": "agri-monitor",
+  "main": "app.py",
+  "compatibility_date": "2024-04-01",
+  "compatibility_flags": ["python_workers"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "agri_records",
+      "database_id": "1d02d3e2-fe17-48e7-8a79-a53f34c8b07b"
     }
-  }
+  ]
 }
