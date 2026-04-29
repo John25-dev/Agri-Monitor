@@ -80,7 +80,7 @@ def request_edit(client_id):
     db.session.commit()
     return jsonify({"message": "Edit request submitted to Admin."})
 
-# Worker Entrypoint Bridge
+# Worker Entrypoint
 async def on_fetch(request, env):
-    import workers
-    return await workers.asgi.fetch(app, request, env)
+    from workers import asgi
+    return await asgi.fetch(app, request, env)
