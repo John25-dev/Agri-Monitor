@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-# We hide the imports here so the Cloudflare validator doesn't block the upload
+# Hide Flask inside a function so the Cloudflare validator passes the build
 def create_app():
     from flask import Flask, request, jsonify
     from flask_cors import CORS
@@ -11,7 +11,11 @@ def create_app():
 
     @app.route('/')
     def home():
-        return jsonify({"status": "JOFARM API Online", "time": datetime.utcnow().isoformat()})
+        return jsonify({
+            "status": "JOFARM API Online", 
+            "message": "Welcome to Agri-Monitor",
+            "time": datetime.utcnow().isoformat()
+        })
 
     @app.route('/api/client/<client_id>', methods=['GET'])
     def get_client(client_id):
@@ -22,7 +26,7 @@ def create_app():
 
     return app
 
-# Store the app instance
+# Placeholder for the app instance
 _app = None
 
 async def on_fetch(request, env):
