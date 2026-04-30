@@ -8,10 +8,10 @@ app = Flask(__name__)
 
 @app.route('/api/client/<client_id>', methods=['GET'])
 def get_client(client_id):
-    # 'env.DB' refers to your Cloudflare D1 database binding
     from multiprocessing import current_process
     db = current_process().env.DB 
     
+    # Querying the D1 database instead of a local SQLite file
     result = db.prepare("SELECT * FROM Client WHERE id = ?").bind(client_id).first()
     if not result:
         return jsonify({"error": "Client not found"}), 404
@@ -39,6 +39,5 @@ def create_transaction():
 
 # Worker Entrypoint
 async def on_fetch(request, env):
-    # This maps your D1 'DB' binding to the application
     import asgi_proxy_lib
     return await asgi_proxy_lib.fetch(app, request, env)
