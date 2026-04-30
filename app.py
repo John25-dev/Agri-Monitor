@@ -39,5 +39,6 @@ def create_transaction():
 
 # Worker Entrypoint
 async def on_fetch(request, env):
+    # This must match the library name in requirements.txt (underscores instead of dashes)
     import asgi_proxy_lib
     return await asgi_proxy_lib.fetch(app, request, env)
